@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import AppHeader from "@/layout/frontend/AppHeader";
-import Backdrop from "@/layout/frontend/Backdrop";
+import AppHeader from '@/layout/frontend/AppHeader'
+import Backdrop from '@/layout/frontend/Backdrop'
 
 export default function HomeLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <>
@@ -23,5 +23,5 @@ export default function HomeLayout({
         </div>
       </div>
     </>
-  );
+  )
 }

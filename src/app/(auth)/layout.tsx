@@ -1,15 +1,15 @@
-import GridShape from "@/components/common/GridShape";
-import ThemeTogglerTwo from "@/components/common/ThemeTogglerTwo";
+import GridShape from '@/components/common/GridShape'
+import ThemeTogglerTwo from '@/components/common/ThemeTogglerTwo'
 
-import { ThemeProvider } from "@/context/ThemeContext";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import { ThemeProvider } from '@/context/ThemeContext'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
 export default function AuthLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <div className="relative z-1 bg-white p-6 sm:p-0 dark:bg-gray-900">
@@ -21,7 +21,10 @@ export default function AuthLayout({
               {/* <!-- ===== Common Grid Shape Start ===== --> */}
               <GridShape />
               <div className="flex max-w-xs flex-col items-center">
-                <Link href="/" className="mb-4 block">
+                <Link
+                  href="/"
+                  className="mb-4 block"
+                >
                   <Image
                     width={231}
                     height={48}
@@ -41,5 +44,5 @@ export default function AuthLayout({
         </div>
       </ThemeProvider>
     </div>
-  );
+  )
 }

@@ -1,22 +1,25 @@
-import Button from "@/components/ui/button/Button";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Button from '@/components/ui/button/Button'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
 interface ComponentCardProps {
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-  desc?: string;
+  title: string
+  children: React.ReactNode
+  className?: string
+  desc?: string
 }
 
 export const Card: React.FC<ComponentCardProps> = ({ title, children }) => {
   return (
     <div className="max-w-sm rounded-lg border border-gray-200 bg-white text-center shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800">
-      <Link href="#" className="bg-amber-200">
+      <Link
+        href="#"
+        className="bg-amber-200"
+      >
         <Image
           className="mx-auto rounded-t-lg object-cover"
-          src={"/images/cards/card-01.jpg"}
+          src={'/images/cards/card-01.jpg'}
           alt=""
           width={300}
           height={200}
@@ -31,7 +34,11 @@ export const Card: React.FC<ComponentCardProps> = ({ title, children }) => {
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
           {children}
         </p>
-        <Button as="link" size="md" href="#">
+        <Button
+          as="link"
+          size="md"
+          href="#"
+        >
           Order Now
           <svg
             className="ms-2 h-3.5 w-3.5 rtl:rotate-180"
@@ -51,5 +58,5 @@ export const Card: React.FC<ComponentCardProps> = ({ title, children }) => {
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}

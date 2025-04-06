@@ -1,9 +1,9 @@
-"use client";
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useSidebar } from "../../context/SidebarContext";
+'use client'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { useSidebar } from '../../context/SidebarContext'
 import {
   BoxCubeIcon,
   CalenderIcon,
@@ -16,99 +16,99 @@ import {
   PlugInIcon,
   TableIcon,
   UserCircleIcon,
-} from "../../icons/index";
-import SidebarWidget from "./SidebarWidget";
-import { myMenu } from "@/data/sidebar-menu";
+} from '../../icons/index'
+import SidebarWidget from './SidebarWidget'
+import { myMenu } from '@/data/sidebar-menu'
 
 export type NavItem = {
-  name: string;
-  icon: React.ReactNode;
-  path?: string;
-  subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
-};
+  name: string
+  icon: React.ReactNode
+  path?: string
+  subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[]
+}
 
-const navMyItems: NavItem[] = myMenu;
+const navMyItems: NavItem[] = myMenu
 
 const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
-    name: "Dashboard",
-    subItems: [{ name: "Ecommerce", path: "/admin", pro: true }],
+    name: 'Dashboard',
+    subItems: [{ name: 'Ecommerce', path: '/admin', pro: true }],
   },
 
   {
     icon: <CalenderIcon />,
-    name: "Calendar",
-    path: "/admin/calendar",
+    name: 'Calendar',
+    path: '/admin/calendar',
   },
   {
     icon: <UserCircleIcon />,
-    name: "User Profile",
-    path: "/admin/profile",
+    name: 'User Profile',
+    path: '/admin/profile',
   },
 
   {
-    name: "Forms",
+    name: 'Forms',
     icon: <ListIcon />,
     subItems: [
-      { name: "Form Elements", path: "/admin/form-elements", pro: false },
+      { name: 'Form Elements', path: '/admin/form-elements', pro: false },
     ],
   },
   {
-    name: "Tables",
+    name: 'Tables',
     icon: <TableIcon />,
     subItems: [
-      { name: "Basic Tables", path: "/admin/basic-tables", pro: false },
+      { name: 'Basic Tables', path: '/admin/basic-tables', pro: false },
     ],
   },
   {
-    name: "Pages",
+    name: 'Pages',
     icon: <PageIcon />,
     subItems: [
-      { name: "Blank Page", path: "/admin/blank", pro: false },
-      { name: "404 Error", path: "/admin/error-404", pro: false },
+      { name: 'Blank Page', path: '/admin/blank', pro: false },
+      { name: '404 Error', path: '/admin/error-404', pro: false },
     ],
   },
-];
+]
 
 const othersItems: NavItem[] = [
   {
     icon: <PieChartIcon />,
-    name: "Charts",
+    name: 'Charts',
     subItems: [
-      { name: "Line Chart", path: "/admin/line-chart", pro: false },
-      { name: "Bar Chart", path: "/admin/bar-chart", pro: false },
+      { name: 'Line Chart', path: '/admin/line-chart', pro: false },
+      { name: 'Bar Chart', path: '/admin/bar-chart', pro: false },
     ],
   },
   {
     icon: <BoxCubeIcon />,
-    name: "UI Elements",
+    name: 'UI Elements',
     subItems: [
-      { name: "Alerts", path: "/admin/alerts", pro: false },
-      { name: "Avatar", path: "/admin/avatars", pro: false },
-      { name: "Badge", path: "/admin/badge", pro: false },
-      { name: "Buttons", path: "/admin/buttons", pro: false },
-      { name: "Images", path: "/admin/images", pro: false },
-      { name: "Videos", path: "/admin/videos", pro: false },
+      { name: 'Alerts', path: '/admin/alerts', pro: false },
+      { name: 'Avatar', path: '/admin/avatars', pro: false },
+      { name: 'Badge', path: '/admin/badge', pro: false },
+      { name: 'Buttons', path: '/admin/buttons', pro: false },
+      { name: 'Images', path: '/admin/images', pro: false },
+      { name: 'Videos', path: '/admin/videos', pro: false },
     ],
   },
   {
     icon: <PlugInIcon />,
-    name: "Authentication",
+    name: 'Authentication',
     subItems: [
-      { name: "Sign In", path: "/admin/signin", pro: false },
-      { name: "Sign Up", path: "/admin/signup", pro: false },
+      { name: 'Sign In', path: '/admin/signin', pro: false },
+      { name: 'Sign Up', path: '/admin/signup', pro: false },
     ],
   },
-];
+]
 
 const AppSidebar: React.FC = () => {
-  const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
-  const pathname = usePathname();
+  const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar()
+  const pathname = usePathname()
 
   const renderMenuItems = (
     navItems: NavItem[],
-    menuType: "main" | "others",
+    menuType: 'main' | 'others',
   ) => (
     <ul className="flex flex-col gap-4">
       {navItems.map((nav, index) => (
@@ -118,19 +118,19 @@ const AppSidebar: React.FC = () => {
               onClick={() => handleSubmenuToggle(index, menuType)}
               className={`menu-item group ${
                 openSubmenu?.type === menuType && openSubmenu?.index === index
-                  ? "menu-item-active"
-                  : "menu-item-inactive"
+                  ? 'menu-item-active'
+                  : 'menu-item-inactive'
               } cursor-pointer ${
                 !isExpanded && !isHovered
-                  ? "lg:justify-center"
-                  : "lg:justify-start"
+                  ? 'lg:justify-center'
+                  : 'lg:justify-start'
               }`}
             >
               <span
                 className={` ${
                   openSubmenu?.type === menuType && openSubmenu?.index === index
-                    ? "menu-item-icon-active"
-                    : "menu-item-icon-inactive"
+                    ? 'menu-item-icon-active'
+                    : 'menu-item-icon-inactive'
                 }`}
               >
                 {nav.icon}
@@ -143,8 +143,8 @@ const AppSidebar: React.FC = () => {
                   className={`ml-auto h-5 w-5 transition-transform duration-200 ${
                     openSubmenu?.type === menuType &&
                     openSubmenu?.index === index
-                      ? "text-brand-500 rotate-180"
-                      : ""
+                      ? 'text-brand-500 rotate-180'
+                      : ''
                   }`}
                 />
               )}
@@ -154,14 +154,14 @@ const AppSidebar: React.FC = () => {
               <Link
                 href={nav.path}
                 className={`menu-item group ${
-                  isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
+                  isActive(nav.path) ? 'menu-item-active' : 'menu-item-inactive'
                 }`}
               >
                 <span
                   className={`${
                     isActive(nav.path)
-                      ? "menu-item-icon-active"
-                      : "menu-item-icon-inactive"
+                      ? 'menu-item-icon-active'
+                      : 'menu-item-icon-inactive'
                   }`}
                 >
                   {nav.icon}
@@ -175,14 +175,14 @@ const AppSidebar: React.FC = () => {
           {nav.subItems && (isExpanded || isHovered || isMobileOpen) && (
             <div
               ref={(el) => {
-                subMenuRefs.current[`${menuType}-${index}`] = el;
+                subMenuRefs.current[`${menuType}-${index}`] = el
               }}
               className="overflow-hidden transition-all duration-300"
               style={{
                 height:
                   openSubmenu?.type === menuType && openSubmenu?.index === index
                     ? `${subMenuHeight[`${menuType}-${index}`]}px`
-                    : "0px",
+                    : '0px',
               }}
             >
               <ul className="mt-2 ml-9 space-y-1">
@@ -192,8 +192,8 @@ const AppSidebar: React.FC = () => {
                       href={subItem.path}
                       className={`menu-dropdown-item ${
                         isActive(subItem.path)
-                          ? "menu-dropdown-item-active"
-                          : "menu-dropdown-item-inactive"
+                          ? 'menu-dropdown-item-active'
+                          : 'menu-dropdown-item-inactive'
                       }`}
                     >
                       {subItem.name}
@@ -202,8 +202,8 @@ const AppSidebar: React.FC = () => {
                           <span
                             className={`ml-auto ${
                               isActive(subItem.path)
-                                ? "menu-dropdown-badge-active"
-                                : "menu-dropdown-badge-inactive"
+                                ? 'menu-dropdown-badge-active'
+                                : 'menu-dropdown-badge-inactive'
                             } menu-dropdown-badge`}
                           >
                             new
@@ -213,8 +213,8 @@ const AppSidebar: React.FC = () => {
                           <span
                             className={`ml-auto ${
                               isActive(subItem.path)
-                                ? "menu-dropdown-badge-active"
-                                : "menu-dropdown-badge-inactive"
+                                ? 'menu-dropdown-badge-active'
+                                : 'menu-dropdown-badge-inactive'
                             } menu-dropdown-badge`}
                           >
                             pro
@@ -230,87 +230,85 @@ const AppSidebar: React.FC = () => {
         </li>
       ))}
     </ul>
-  );
+  )
 
   const [openSubmenu, setOpenSubmenu] = useState<{
-    type: "main" | "others";
-    index: number;
-  } | null>(null);
-  const [subMenuHeight, setSubMenuHeight] = useState<Record<string, number>>(
-    {},
-  );
-  const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
+    type: 'main' | 'others'
+    index: number
+  } | null>(null)
+  const [subMenuHeight, setSubMenuHeight] = useState<Record<string, number>>({})
+  const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({})
 
   // const isActive = (path: string) => path === pathname;
-  const isActive = useCallback((path: string) => path === pathname, [pathname]);
+  const isActive = useCallback((path: string) => path === pathname, [pathname])
 
   useEffect(() => {
     // Check if the current path matches any submenu item
-    let submenuMatched = false;
-    ["main", "others"].forEach((menuType) => {
-      const items = menuType === "main" ? navItems : othersItems;
+    let submenuMatched = false
+    ;['main', 'others'].forEach((menuType) => {
+      const items = menuType === 'main' ? navItems : othersItems
       items.forEach((nav, index) => {
         if (nav.subItems) {
           nav.subItems.forEach((subItem) => {
             if (isActive(subItem.path)) {
               setOpenSubmenu({
-                type: menuType as "main" | "others",
+                type: menuType as 'main' | 'others',
                 index,
-              });
-              submenuMatched = true;
+              })
+              submenuMatched = true
             }
-          });
+          })
         }
-      });
-    });
+      })
+    })
 
     // If no submenu item matches, close the open submenu
     if (!submenuMatched) {
-      setOpenSubmenu(null);
+      setOpenSubmenu(null)
     }
-  }, [pathname, isActive]);
+  }, [pathname, isActive])
 
   useEffect(() => {
     // Set the height of the submenu items when the submenu is opened
     if (openSubmenu !== null) {
-      const key = `${openSubmenu.type}-${openSubmenu.index}`;
+      const key = `${openSubmenu.type}-${openSubmenu.index}`
       if (subMenuRefs.current[key]) {
         setSubMenuHeight((prevHeights) => ({
           ...prevHeights,
           [key]: subMenuRefs.current[key]?.scrollHeight || 0,
-        }));
+        }))
       }
     }
-  }, [openSubmenu]);
+  }, [openSubmenu])
 
-  const handleSubmenuToggle = (index: number, menuType: "main" | "others") => {
+  const handleSubmenuToggle = (index: number, menuType: 'main' | 'others') => {
     setOpenSubmenu((prevOpenSubmenu) => {
       if (
         prevOpenSubmenu &&
         prevOpenSubmenu.type === menuType &&
         prevOpenSubmenu.index === index
       ) {
-        return null;
+        return null
       }
-      return { type: menuType, index };
-    });
-  };
+      return { type: menuType, index }
+    })
+  }
 
   return (
     <aside
       className={`fixed top-0 left-0 z-50 mt-16 flex h-screen flex-col border-r border-gray-200 bg-white px-5 text-gray-900 transition-all duration-300 ease-in-out lg:mt-0 dark:border-gray-800 dark:bg-gray-900 ${
         isExpanded || isMobileOpen
-          ? "w-[290px]"
+          ? 'w-[290px]'
           : isHovered
-            ? "w-[290px]"
-            : "w-[90px]"
-      } ${isMobileOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
+            ? 'w-[290px]'
+            : 'w-[90px]'
+      } ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
       onMouseEnter={() => !isExpanded && setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
         className={`flex py-8 ${
-          !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+          !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
         }`}
       >
         <Link href="/">
@@ -349,58 +347,58 @@ const AppSidebar: React.FC = () => {
               <h2
                 className={`mb-4 flex text-xs leading-[20px] text-gray-400 uppercase ${
                   !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
+                    ? 'lg:justify-center'
+                    : 'justify-start'
                 }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
-                  "My Menu"
+                  'My Menu'
                 ) : (
                   <HorizontaLDots />
                 )}
               </h2>
-              {renderMenuItems(navMyItems, "main")}
+              {renderMenuItems(navMyItems, 'main')}
             </div>
             {/* end my menu */}
             <div>
               <h2
                 className={`mb-4 flex text-xs leading-[20px] text-gray-400 uppercase ${
                   !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
+                    ? 'lg:justify-center'
+                    : 'justify-start'
                 }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
-                  "Menu"
+                  'Menu'
                 ) : (
                   <HorizontaLDots />
                 )}
               </h2>
-              {renderMenuItems(navItems, "main")}
+              {renderMenuItems(navItems, 'main')}
             </div>
 
             <div className="">
               <h2
                 className={`mb-4 flex text-xs leading-[20px] text-gray-400 uppercase ${
                   !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
+                    ? 'lg:justify-center'
+                    : 'justify-start'
                 }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
-                  "Others"
+                  'Others'
                 ) : (
                   <HorizontaLDots />
                 )}
               </h2>
-              {renderMenuItems(othersItems, "others")}
+              {renderMenuItems(othersItems, 'others')}
             </div>
           </div>
         </nav>
         {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null}
       </div>
     </aside>
-  );
-};
+  )
+}
 
-export default AppSidebar;
+export default AppSidebar

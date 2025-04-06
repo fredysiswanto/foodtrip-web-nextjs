@@ -1,24 +1,27 @@
-"use client";
-import { useModal } from "@/hooks/useModal";
-import ComponentCard from "../../common/ComponentCard";
+'use client'
+import { useModal } from '@/hooks/useModal'
+import ComponentCard from '../../common/ComponentCard'
 
-import Button from "../../ui/button/Button";
-import { Modal } from "../../ui/modal";
+import Button from '../../ui/button/Button'
+import { Modal } from '../../ui/modal'
 
 export default function FullScreenModal() {
   const {
     isOpen: isFullscreenModalOpen,
     openModal: openFullscreenModal,
     closeModal: closeFullscreenModal,
-  } = useModal();
+  } = useModal()
   const handleSave = () => {
     // Handle save logic here
-    console.log("Saving changes...");
-    closeFullscreenModal();
-  };
+    console.log('Saving changes...')
+    closeFullscreenModal()
+  }
   return (
     <ComponentCard title="Full Screen Modal">
-      <Button size="sm" onClick={openFullscreenModal}>
+      <Button
+        size="sm"
+        onClick={openFullscreenModal}
+      >
         Open Modal
       </Button>
       <Modal
@@ -27,9 +30,9 @@ export default function FullScreenModal() {
         isFullscreen={true}
         showCloseButton={true}
       >
-        <div className="fixed top-0 left-0 flex flex-col justify-between w-full h-screen p-6 overflow-x-hidden overflow-y-auto bg-white dark:bg-gray-900 lg:p-10">
+        <div className="fixed top-0 left-0 flex h-screen w-full flex-col justify-between overflow-x-hidden overflow-y-auto bg-white p-6 lg:p-10 dark:bg-gray-900">
           <div>
-            <h4 className="font-semibold text-gray-800 mb-7 text-title-sm dark:text-white/90">
+            <h4 className="text-title-sm mb-7 font-semibold text-gray-800 dark:text-white/90">
               Modal Heading
             </h4>
             <p className="text-sm leading-6 text-gray-500 dark:text-gray-400">
@@ -51,16 +54,23 @@ export default function FullScreenModal() {
               Pellentesque euismod est quis mauris lacinia pharetra.
             </p>
           </div>
-          <div className="flex items-center justify-end w-full gap-3 mt-8">
-            <Button size="sm" variant="outline" onClick={closeFullscreenModal}>
+          <div className="mt-8 flex w-full items-center justify-end gap-3">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={closeFullscreenModal}
+            >
               Close
             </Button>
-            <Button size="sm" onClick={handleSave}>
+            <Button
+              size="sm"
+              onClick={handleSave}
+            >
               Save Changes
             </Button>
           </div>
         </div>
       </Modal>
     </ComponentCard>
-  );
+  )
 }

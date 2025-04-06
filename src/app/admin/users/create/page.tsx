@@ -1,6 +1,6 @@
-import ComponentCard from "@/components/common/ComponentCard";
-import PageBreadcrumb from "@/components/common/PageBreadCrumb";
-import Form from "next/form";
+import ComponentCard from '@/components/common/ComponentCard'
+import PageBreadcrumb from '@/components/common/PageBreadCrumb'
+import Form from 'next/form'
 export default function CreateUserPage() {
   return (
     <div>
@@ -14,5 +14,5 @@ export default function CreateUserPage() {
         </ComponentCard>
       </div>
     </div>
-  );
+  )
 }

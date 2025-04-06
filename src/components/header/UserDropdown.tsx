@@ -1,26 +1,26 @@
-"use client";
-import Image from "next/image";
-import React, { useState } from "react";
-import { Dropdown } from "../ui/dropdown/Dropdown";
-import { DropdownItem } from "../ui/dropdown/DropdownItem";
-import { signOut, useSession } from "next-auth/react";
-import Button from "@/components/ui/button/Button";
+'use client'
+import Image from 'next/image'
+import React, { useState } from 'react'
+import { Dropdown } from '../ui/dropdown/Dropdown'
+import { DropdownItem } from '../ui/dropdown/DropdownItem'
+import { signOut, useSession } from 'next-auth/react'
+import Button from '@/components/ui/button/Button'
 
 export default function UserDropdown() {
-  const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession()
+  const [isOpen, setIsOpen] = useState(false)
 
   function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.stopPropagation();
-    setIsOpen((prev) => !prev);
+    e.stopPropagation()
+    setIsOpen((prev) => !prev)
   }
 
   function closeDropdown() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   function logOutHandler() {
-    signOut();
+    signOut()
   }
   return (
     <>
@@ -45,7 +45,7 @@ export default function UserDropdown() {
 
             <svg
               className={`stroke-gray-500 transition-transform duration-200 dark:stroke-gray-400 ${
-                isOpen ? "rotate-180" : ""
+                isOpen ? 'rotate-180' : ''
               }`}
               width="18"
               height="20"
@@ -179,10 +179,14 @@ export default function UserDropdown() {
         </div>
       )}
       {!session && (
-        <Button size="sm" as="link" href="/login">
+        <Button
+          size="sm"
+          as="link"
+          href="/login"
+        >
           Login
         </Button>
       )}
     </>
-  );
+  )
 }

@@ -1,34 +1,34 @@
-"use client";
+'use client'
 
-import Checkbox from "@/components/form/input/Checkbox";
-import Input from "@/components/form/input/InputField";
-import Label from "@/components/form/Label";
-import Button from "@/components/ui/button/Button";
-import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { useState } from "react";
+import Checkbox from '@/components/form/input/Checkbox'
+import Input from '@/components/form/input/InputField'
+import Label from '@/components/form/Label'
+import Button from '@/components/ui/button/Button'
+import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from '@/icons'
+import { signIn } from 'next-auth/react'
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { useState } from 'react'
 
 export default function LoginForm() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false)
+  const [isChecked, setIsChecked] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const res = await signIn("credentials", {
+    e.preventDefault()
+    const res = await signIn('credentials', {
       redirect: false,
       email,
       password,
-    });
-    if (res?.ok) redirect("/admin");
+    })
+    if (res?.ok) redirect('/admin')
     else {
-      setError(`${res?.error}`);
+      setError(`${res?.error}`)
     }
-  };
+  }
 
   return (
     <>
@@ -120,11 +120,14 @@ export default function LoginForm() {
                   </span>
                 </div>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-5"
+              >
                 <div className="space-y-6">
                   <div>
                     <Label>
-                      Email <span className="text-error-500">*</span>{" "}
+                      Email <span className="text-error-500">*</span>{' '}
                     </Label>
                     <Input
                       placeholder="info@gmail.com"
@@ -135,11 +138,11 @@ export default function LoginForm() {
                   </div>
                   <div>
                     <Label>
-                      Password <span className="text-error-500">*</span>{" "}
+                      Password <span className="text-error-500">*</span>{' '}
                     </Label>
                     <div className="relative">
                       <Input
-                        type={showPassword ? "text" : "password"}
+                        type={showPassword ? 'text' : 'password'}
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -158,7 +161,10 @@ export default function LoginForm() {
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <Checkbox checked={isChecked} onChange={setIsChecked} />
+                      <Checkbox
+                        checked={isChecked}
+                        onChange={setIsChecked}
+                      />
                       <span className="text-theme-sm block font-normal text-gray-700 dark:text-gray-400">
                         Keep me logged in
                       </span>
@@ -172,7 +178,11 @@ export default function LoginForm() {
                   </div>
 
                   <div>
-                    <Button className="w-full" size="sm" type="submit">
+                    <Button
+                      className="w-full"
+                      size="sm"
+                      type="submit"
+                    >
                       Sign in
                     </Button>
                     {error && (
@@ -186,7 +196,7 @@ export default function LoginForm() {
 
               <div className="mt-5">
                 <p className="text-center text-sm font-normal text-gray-700 sm:text-start dark:text-gray-400">
-                  Don&apos;t have an account? {""}
+                  Don&apos;t have an account? {''}
                   <Link
                     href="/signup"
                     className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
@@ -200,5 +210,5 @@ export default function LoginForm() {
         </div>
       </div>
     </>
-  );
+  )
 }

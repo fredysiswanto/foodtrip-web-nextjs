@@ -1,44 +1,44 @@
-"use client";
-import { ThemeToggleButton } from "@/components/common/ThemeToggleButton";
-import NotificationDropdown from "@/components/header/NotificationDropdown";
-import UserDropdown from "@/components/header/UserDropdown";
-import { useSidebar } from "@/context/SidebarContext";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useState, useEffect, useRef } from "react";
+'use client'
+import { ThemeToggleButton } from '@/components/common/ThemeToggleButton'
+import NotificationDropdown from '@/components/header/NotificationDropdown'
+import UserDropdown from '@/components/header/UserDropdown'
+import { useSidebar } from '@/context/SidebarContext'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useState, useEffect, useRef } from 'react'
 
 const AppHeader: React.FC = () => {
-  const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
+  const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false)
 
-  const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
+  const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar()
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
-      toggleSidebar();
+      toggleSidebar()
     } else {
-      toggleMobileSidebar();
+      toggleMobileSidebar()
     }
-  };
+  }
 
   const toggleApplicationMenu = () => {
-    setApplicationMenuOpen(!isApplicationMenuOpen);
-  };
-  const inputRef = useRef<HTMLInputElement>(null);
+    setApplicationMenuOpen(!isApplicationMenuOpen)
+  }
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
-        event.preventDefault();
-        inputRef.current?.focus();
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault()
+        inputRef.current?.focus()
       }
-    };
+    }
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   return (
     <header className="sticky top-0 z-99999 flex w-full border-gray-200 bg-white lg:border-b dark:border-gray-800 dark:bg-gray-900">
@@ -83,7 +83,10 @@ const AppHeader: React.FC = () => {
             {/* Cross Icon */}
           </button>
 
-          <Link href="/admin" className="lg:hidden">
+          <Link
+            href="/admin"
+            className="lg:hidden"
+          >
             <Image
               width={154}
               height={32}
@@ -157,7 +160,7 @@ const AppHeader: React.FC = () => {
         </div>
         <div
           className={`${
-            isApplicationMenuOpen ? "flex" : "hidden"
+            isApplicationMenuOpen ? 'flex' : 'hidden'
           } shadow-theme-md w-full items-center justify-between gap-4 px-5 py-4 lg:flex lg:justify-end lg:px-0 lg:shadow-none`}
         >
           <div className="2xsm:gap-3 flex items-center gap-2">
@@ -173,7 +176,7 @@ const AppHeader: React.FC = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default AppHeader;
+export default AppHeader

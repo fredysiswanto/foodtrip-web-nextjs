@@ -1,15 +1,15 @@
-"use client";
-import Checkbox from "@/components/form/input/Checkbox";
-import Input from "@/components/form/input/InputField";
-import Label from "@/components/form/Label";
-import Button from "@/components/ui/button/Button";
-import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
-import Link from "next/link";
-import React, { useState } from "react";
+'use client'
+import Checkbox from '@/components/form/input/Checkbox'
+import Input from '@/components/form/input/InputField'
+import Label from '@/components/form/Label'
+import Button from '@/components/ui/button/Button'
+import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from '@/icons'
+import Link from 'next/link'
+import React, { useState } from 'react'
 
 export default function SignInForm() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
+  const [isChecked, setIsChecked] = useState(false)
   return (
     <div className="flex w-full flex-1 flex-col lg:w-1/2">
       <div className="mx-auto mb-5 w-full max-w-md sm:pt-10">
@@ -88,17 +88,20 @@ export default function SignInForm() {
               <div className="space-y-6">
                 <div>
                   <Label>
-                    Email <span className="text-error-500">*</span>{" "}
+                    Email <span className="text-error-500">*</span>{' '}
                   </Label>
-                  <Input placeholder="info@gmail.com" type="email" />
+                  <Input
+                    placeholder="info@gmail.com"
+                    type="email"
+                  />
                 </div>
                 <div>
                   <Label>
-                    Password <span className="text-error-500">*</span>{" "}
+                    Password <span className="text-error-500">*</span>{' '}
                   </Label>
                   <div className="relative">
                     <Input
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword ? 'text' : 'password'}
                       placeholder="Enter your password"
                     />
                     <span
@@ -115,7 +118,10 @@ export default function SignInForm() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Checkbox checked={isChecked} onChange={setIsChecked} />
+                    <Checkbox
+                      checked={isChecked}
+                      onChange={setIsChecked}
+                    />
                     <span className="text-theme-sm block font-normal text-gray-700 dark:text-gray-400">
                       Keep me logged in
                     </span>
@@ -128,7 +134,10 @@ export default function SignInForm() {
                   </Link>
                 </div>
                 <div>
-                  <Button className="w-full" size="sm">
+                  <Button
+                    className="w-full"
+                    size="sm"
+                  >
                     Sign in
                   </Button>
                 </div>
@@ -137,7 +146,7 @@ export default function SignInForm() {
 
             <div className="mt-5">
               <p className="text-center text-sm font-normal text-gray-700 sm:text-start dark:text-gray-400">
-                Don&apos;t have an account? {""}
+                Don&apos;t have an account? {''}
                 <Link
                   href="/signup"
                   className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
@@ -150,5 +159,5 @@ export default function SignInForm() {
         </div>
       </div>
     </div>
-  );
+  )
 }

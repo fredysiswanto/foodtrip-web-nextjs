@@ -1,26 +1,26 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useState } from "react";
-import { Dropdown } from "../ui/dropdown/Dropdown";
-import { DropdownItem } from "../ui/dropdown/DropdownItem";
+'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useState } from 'react'
+import { Dropdown } from '../ui/dropdown/Dropdown'
+import { DropdownItem } from '../ui/dropdown/DropdownItem'
 
 export default function NotificationDropdown() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [notifying, setNotifying] = useState(true);
+  const [isOpen, setIsOpen] = useState(false)
+  const [notifying, setNotifying] = useState(true)
 
   function toggleDropdown() {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen)
   }
 
   function closeDropdown() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   const handleClick = () => {
-    toggleDropdown();
-    setNotifying(false);
-  };
+    toggleDropdown()
+    setNotifying(false)
+  }
   return (
     <div className="relative">
       <button
@@ -29,7 +29,7 @@ export default function NotificationDropdown() {
       >
         <span
           className={`absolute top-0.5 right-0 z-10 h-2 w-2 rounded-full bg-orange-400 ${
-            !notifying ? "hidden" : "flex"
+            !notifying ? 'hidden' : 'flex'
           }`}
         >
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75"></span>
@@ -380,5 +380,5 @@ export default function NotificationDropdown() {
         </Link>
       </Dropdown>
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   ColumnDef,
   flexRender,
@@ -9,40 +9,40 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { redirect } from "next/navigation";
-import { TCustomer } from "@/data/customer";
-import Input from "@/components/form/input/InputField";
-import Button from "@/components/ui/button/Button";
+} from '@tanstack/react-table'
+import { redirect } from 'next/navigation'
+import { TCustomer } from '@/data/customer'
+import Input from '@/components/form/input/InputField'
+import Button from '@/components/ui/button/Button'
 
 type TableProps<TData> = {
-  data: TData[];
-  columns: ColumnDef<TData>[];
-};
+  data: TData[]
+  columns: ColumnDef<TData>[]
+}
 
 const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [sorting, setSorting] = useState<any[]>([]);
-  const [filtering, setFiltering] = useState("");
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+  const [sorting, setSorting] = useState<any[]>([])
+  const [filtering, setFiltering] = useState('')
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 })
 
   const handelView = (dataUser: TCustomer) => {
-    const userId = dataUser.user_id;
-    redirect(`/admin/users/${userId}`);
-  };
+    const userId = dataUser.user_id
+    redirect(`/admin/users/${userId}`)
+  }
 
   const table = useReactTable({
     data,
     columns: [
       {
-        id: "index",
-        header: "No",
+        id: 'index',
+        header: 'No',
         cell: ({ row }) => row.index + 1,
       },
       ...columns,
       {
-        id: "actions",
-        header: "Actions",
+        id: 'actions',
+        header: 'Actions',
         cell: ({ row }) => (
           <div className="flex gap-2">
             <button
@@ -69,7 +69,7 @@ const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
     onSortingChange: setSorting,
     onGlobalFilterChange: setFiltering,
     onPaginationChange: setPagination,
-  });
+  })
 
   return (
     <div className="overflow-hidden dark:border-white/[0.05] dark:bg-white/[0.03]">
@@ -87,7 +87,10 @@ const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
             <table className="min-w-[1102px]">
               <thead>
                 {table.getHeaderGroups().map((headerGroup) => (
-                  <tr key={headerGroup.id} className="bg-gray-200">
+                  <tr
+                    key={headerGroup.id}
+                    className="bg-gray-200"
+                  >
                     {headerGroup.headers.map((header) => (
                       <th
                         key={header.id}
@@ -98,11 +101,11 @@ const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
-                        {header.column.getIsSorted() === "asc"
-                          ? " 🔼"
-                          : header.column.getIsSorted() === "desc"
-                            ? " 🔽"
-                            : ""}
+                        {header.column.getIsSorted() === 'asc'
+                          ? ' 🔼'
+                          : header.column.getIsSorted() === 'desc'
+                            ? ' 🔽'
+                            : ''}
                       </th>
                     ))}
                   </tr>
@@ -110,9 +113,15 @@ const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
               </thead>
               <tbody>
                 {table.getRowModel().rows.map((row) => (
-                  <tr key={row.id} className="odd:bg-white even:bg-gray-100">
+                  <tr
+                    key={row.id}
+                    className="odd:bg-white even:bg-gray-100"
+                  >
                     {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id} className="border border-gray-300 p-2">
+                      <td
+                        key={cell.id}
+                        className="border border-gray-300 p-2"
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext(),
@@ -146,7 +155,7 @@ const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TableComponent;
+export default TableComponent

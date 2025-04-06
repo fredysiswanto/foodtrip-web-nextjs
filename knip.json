@@ -1,0 +1,27 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "entry": ["next.config.js", "src/pages/**/*.{ts,tsx}"],
+  "project": ["src/**/*.{ts,tsx,js,jsx}"],
+  "ignoreDependencies": [
+    "eslint",
+    "prettier",
+    "eslint-*",
+    "@types/*",
+    "typescript",
+    "knip",
+    "free-nextjs-admin-dashboard"
+  ],
+  "ignoreWorkspaces": [],
+  "ignore": [
+    "**/node_modules/**",
+    "**/*.test.tsx",
+    "**/__tests__/**",
+    "**/mocks/**",
+    "**/*.mock.ts",
+    "**/types/**",
+    "**/lib/axios.ts",
+    "**/next-env.d.ts",
+    "**/src/icons/**",
+    "**/src/data/**"
+  ]
+}
