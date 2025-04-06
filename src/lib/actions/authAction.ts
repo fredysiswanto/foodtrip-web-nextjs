@@ -5,6 +5,8 @@ type UserResponse = {
     data: {
       user_id: string;
       email_address: string;
+      first_name: string;
+      last_name: string;
     };
     token: string;
   };
@@ -13,6 +15,7 @@ type UserResponse = {
 type AuthResult = {
   id: string;
   email: string;
+  name: string;
   token: string;
 } | null;
 
@@ -32,6 +35,7 @@ export async function loginWithApi(email: string, password: string) {
   return {
     id: data.data.user_id,
     email: data.data.email_address,
+    name: `${data.data.first_name} ${data.data.last_name}`,
     token: data.token, // Bearer token dari API
   };
 }
@@ -61,7 +65,7 @@ function getUserAuthManual(email: string): AuthResult {
 
   const {
     sendResponse: {
-      data: { user_id, email_address },
+      data: { user_id, email_address, first_name, last_name },
       token,
     },
   } = userObj;
@@ -69,6 +73,7 @@ function getUserAuthManual(email: string): AuthResult {
   return {
     id: user_id,
     email: email_address,
+    name: `${first_name} ${last_name}`,
     token,
   };
 }

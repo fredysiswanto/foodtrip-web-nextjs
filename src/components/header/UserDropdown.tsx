@@ -40,7 +40,7 @@ export default function UserDropdown() {
             </span>
 
             <span className="text-theme-sm mr-1 block font-medium">
-              Fredy S
+              {session.user.name}
             </span>
 
             <svg
