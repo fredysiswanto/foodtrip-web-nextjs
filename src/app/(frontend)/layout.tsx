@@ -10,7 +10,7 @@ export default function HomeLayout({
 }) {
   return (
     <>
-      <div className="mx-20 min-h-screen xl:flex">
+      <div className="min-h-screen md:mx-20 xl:flex">
         <Backdrop />
         {/* Main Content Area */}
         <div className={`flex-1 transition-all duration-300 ease-in-out`}>

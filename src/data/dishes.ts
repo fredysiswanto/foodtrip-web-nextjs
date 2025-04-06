@@ -2,8 +2,7 @@ export const listDishes = {
   draw: 1,
   data: [
     {
-      dish_img:
-        'http://localhost:3600/public/dishes/dish_img-0000000000045.png',
+      dish_img: 'https://api.unsplash.com/photos/random',
       dish_id: '03217699-5d11-46a9-af2b-0d48b3ccab75',
       dish_no: 'DSH-4347999675195',
       dish_name: 'Whole Wheat Loaf',
