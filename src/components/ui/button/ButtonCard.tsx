@@ -19,7 +19,7 @@ export const ButtonCard: React.FC<ButtonCardProps> = ({
 }) => {
   return (
     <div className="relative">
-      <div className={`absolute top-${top} right-${right} z-10`}>
+      <div className={`absolute mt-4 top-${top} right-${right} z-10`}>
         <Button
           size={size}
           as="link"

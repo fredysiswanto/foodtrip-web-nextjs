@@ -24,7 +24,7 @@ const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [sorting, setSorting] = useState<any[]>([])
   const [filtering, setFiltering] = useState('')
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 })
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 })
 
   const handelView = (dataUser: TCustomer) => {
     const userId = dataUser.user_id

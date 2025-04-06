@@ -10,6 +10,22 @@ Inspiration from [repo](https://github.com/micahvillaruz/foodtrip-web)
 
 Starting project use TailAdmin Next.js free version
 
+## Demo
+
+[Link Demo](https://foodtrip-web-nextjs.vercel.app/)
+
+Account :
+
+```
+{ email_address: 'customer@test.com', password: 'password' },
+{ email_address: 'resto@test.com', password: 'password' },
+{ email_address: 'admin@admin.com', password: 'admin'  },
+```
+
+![Demo View Admin](admin.png)
+
+![Demo View Customer](customer.png)
+
 =======================================================================
 
 ## TailAdmin Next.js - Free Next.js Tailwind Admin Dashboard Template
