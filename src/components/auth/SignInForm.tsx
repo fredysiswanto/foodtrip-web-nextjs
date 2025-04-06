@@ -1,28 +1,15 @@
 "use client";
-import Link from "next/link";
-import React, { useState } from "react";
-import { useFormState } from "react-dom";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Checkbox from "@/components/form/input/Checkbox";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
 import Button from "@/components/ui/button/Button";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
-import { signinAction } from "@/lib/actions/authAction";
-import { TLoginInput } from "@/lib/actions/schema";
+import Link from "next/link";
+import React, { useState } from "react";
 
 export default function SignInForm() {
-  const [formData, setFormData] = useState<TLoginInput>({
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [loading, setLoading] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-
   return (
     <div className="flex w-full flex-1 flex-col lg:w-1/2">
       <div className="mx-auto mb-5 w-full max-w-md sm:pt-10">
@@ -97,7 +84,7 @@ export default function SignInForm() {
                 </span>
               </div>
             </div>
-            <form action={signinAction} className="space-y-5">
+            <form>
               <div className="space-y-6">
                 <div>
                   <Label>
@@ -141,7 +128,7 @@ export default function SignInForm() {
                   </Link>
                 </div>
                 <div>
-                  <Button className="w-full" size="sm" type="submit">
+                  <Button className="w-full" size="sm">
                     Sign in
                   </Button>
                 </div>

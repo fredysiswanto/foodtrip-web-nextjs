@@ -7,6 +7,6 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-export default function SignUp() {
+export default function RegisterPage() {
   return <SignUpForm />;
 }
