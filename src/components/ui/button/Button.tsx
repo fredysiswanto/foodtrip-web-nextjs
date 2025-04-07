@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 
-interface ButtonProps {
+type ButtonProps = {
   children: ReactNode
   size?: 'xs' | 'sm' | 'md'
   variant?: 'primary' | 'outline'
@@ -26,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   as = 'button',
   href = '#',
+  ...props
 }: ButtonProps) => {
   const sizeClasses = {
     xs: 'px-3 py-2 text-sm',
@@ -78,6 +79,7 @@ const Button: React.FC<ButtonProps> = ({
       className={classNames}
       onClick={onClick}
       disabled={disabled}
+      {...props}
     >
       {startIcon && <span className="flex items-center">{startIcon}</span>}
       {children}

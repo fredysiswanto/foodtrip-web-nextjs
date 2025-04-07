@@ -9,8 +9,8 @@ type ComponentCardProps = {
   children: React.ReactNode
   className?: string
   desc?: string
-  width?: string
-  height?: string
+  width?: number
+  height?: number
   image?: string
   imageAlt?: string
 } & TDish
@@ -22,8 +22,8 @@ function getRandomNumber(): number {
 export const Card: React.FC<ComponentCardProps> = ({
   title,
   children,
-  width = '300px',
-  height = '400px',
+  width = 300,
+  height = 400,
   ...dish
 }) => {
   return (

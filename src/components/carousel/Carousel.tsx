@@ -1,115 +1,87 @@
+'use client'
+
+import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
+import { EmblaOptionsType } from 'embla-carousel'
+import { DotButton, useDotButton } from './DotButtonCarousel'
+import { PrevButton, NextButton, usePrevNextButtons } from './ArrowCarousel'
+import styles from './carousel.module.css'
 
-export const Carousel = () => {
+import { TRestaurant } from '@/types/type'
+import { ItemColousel } from '@/components/carousel/ItemColousel'
+
+export type TSlides = Pick<TRestaurant, 'resto_img' | 'resto_name'>
+type PropType = {
+  slides: TSlides[]
+  options?: EmblaOptionsType
+}
+
+const EmblaCarousel: React.FC<PropType> = (props) => {
+  const { slides, options } = props
+  const [emblaRef, emblaApi] = useEmblaCarousel(options)
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi)
+
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi)
+
   return (
-    <div>
+    <section className={styles.embla}>
       <div
-        id="default-carousel"
-        className="relative w-full"
-        data-carousel="slide"
+        className={styles.embla__viewport}
+        ref={emblaRef}
       >
-        <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-          <div
-            className="hidden duration-700 ease-in-out"
-            data-carousel-item
-          >
-            <Image
-              width={800}
-              height={500}
-              src="/docs/images/carousel/carousel-1.svg"
-              className="absolute top-1/2 left-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
-              alt="..."
-            ></Image>
-          </div>
-        </div>
-
-        <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
-          <button
-            type="button"
-            className="h-3 w-3 rounded-full"
-            aria-current="true"
-            aria-label="Slide 1"
-            data-carousel-slide-to="0"
-          ></button>
-          <button
-            type="button"
-            className="h-3 w-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 2"
-            data-carousel-slide-to="1"
-          ></button>
-          <button
-            type="button"
-            className="h-3 w-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 3"
-            data-carousel-slide-to="2"
-          ></button>
-          <button
-            type="button"
-            className="h-3 w-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 4"
-            data-carousel-slide-to="3"
-          ></button>
-          <button
-            type="button"
-            className="h-3 w-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 5"
-            data-carousel-slide-to="4"
-          ></button>
-        </div>
-
-        <button
-          type="button"
-          className="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
-          data-carousel-prev
-        >
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
-            <svg
-              className="h-4 w-4 text-white rtl:rotate-180 dark:text-gray-800"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
+        <div className={styles.embla__container}>
+          {slides.map((slide, index) => (
+            <div
+              className={styles.embla__slide}
+              key={index}
             >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 1 1 5l4 4"
-              />
-            </svg>
-            <span className="sr-only">Previous</span>
-          </span>
-        </button>
-        <button
-          type="button"
-          className="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
-          data-carousel-next
-        >
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
-            <svg
-              className="h-4 w-4 text-white rtl:rotate-180 dark:text-gray-800"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m1 9 4-4-4-4"
-              />
-            </svg>
-            <span className="sr-only">Next</span>
-          </span>
-        </button>
+              <div>
+                <ItemColousel
+                  resto_img={`/images/resto/resto (${index + 1}).jpg`}
+                  resto_name={slide.resto_name}
+                />
+              </div>
+              <div className={styles.embla__slide__number}>
+                {slide.resto_name}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+
+      <div className={styles.embla__controls}>
+        <div className={styles.embla__buttons}>
+          <PrevButton
+            onClick={onPrevButtonClick}
+            disabled={prevBtnDisabled}
+          />
+          <NextButton
+            onClick={onNextButtonClick}
+            disabled={nextBtnDisabled}
+          />
+        </div>
+
+        <div className={styles.embla__dots}>
+          {scrollSnaps.map((_, index) => (
+            <DotButton
+              key={index}
+              onClick={() => onDotButtonClick(index)}
+              className={`${styles.embla__dot}`.concat(
+                index === selectedIndex ? `${styles.embla__dot}--selected` : '',
+              )}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
+
+export default EmblaCarousel
