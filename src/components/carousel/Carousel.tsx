@@ -32,6 +32,11 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   return (
     <section className={styles.embla}>
+      <div className="absolute z-10 mt-10 ml-0 rounded-r-3xl bg-white/40 p-10 text-5xl font-bold">
+        <h2 className="inline-block bg-gradient-to-r from-blue-600 via-orange-500 to-indigo-400 bg-clip-text text-transparent">
+          Favorite Resto this Month
+        </h2>
+      </div>
       <div
         className={styles.embla__viewport}
         ref={emblaRef}

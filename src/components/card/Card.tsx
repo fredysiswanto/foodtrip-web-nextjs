@@ -15,10 +15,6 @@ type ComponentCardProps = {
   imageAlt?: string
 } & TDish
 
-function getRandomNumber(): number {
-  return Math.floor(Math.random() * 31) + 1
-}
-
 export const Card: React.FC<ComponentCardProps> = ({
   title,
   children,
@@ -28,14 +24,14 @@ export const Card: React.FC<ComponentCardProps> = ({
 }) => {
   return (
     <div
-      className={`w-full rounded-lg border border-gray-200 bg-white text-center shadow-sm hover:bg-gray-100 md:w-1/3 lg:w-[23%] dark:border-gray-700 dark:bg-gray-800`}
+      className={`w-full rounded-lg border border-gray-200 bg-white text-center shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800`}
     >
       <div className="flex flex-col items-center justify-between">
-        <div className="relative h-[200px] w-full">
+        <div className={`relative h-[200px] w-full min-w-[${width}px]`}>
           <Link href="#">
             <Image
               className="mx-auto rounded-t-lg object-cover"
-              src={`/images/food/food (${getRandomNumber()}).jpg`}
+              src={dish.image ?? '/images/food/food (1).jpg'}
               alt=""
               fill={true}
               loading="lazy"

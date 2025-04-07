@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-
+@import '../components/carousel/carousel.css';
 @custom-variant dark (&:is(.dark *));
 
 @theme {
